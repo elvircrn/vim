@@ -1,4 +1,4 @@
-"version 1.0
+"version 1.0 hi
 
 "let fts = ['c', 'cpp']
 "if index(fts, &filetype) == -1
