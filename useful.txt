@@ -1,0 +1,33 @@
+
+
+
+
+
+
+
+
+*			-> highlight words under cursor
+nohl		-> unhighlights searched words
+
+FontSize 14 -> change font size
+
+
+gg=G        -> auto indentation
+
+set complete-=i -> improve vim autocomplete
+
+y y, p -> yy copies the line, p pastes it
+d d    -> deletes the line
+
+multi line edit:
+	ctrl q, enter visual block mode
+	select block
+    press I (has to be upper case)
+	input text
+	press escape
+profit
+
+1,2,3bdelete -> delete buffer 1, 2, 3
+ls -> list all buffers
+
+colors ashen -> set color theme to ashen
