@@ -1,3 +1,5 @@
+"version 1.0
+
 "let fts = ['c', 'cpp']
 "if index(fts, &filetype) == -1
 

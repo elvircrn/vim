@@ -1,3 +1,5 @@
+"version 1.0
+
 "let fts = ['c', 'cpp']
 "if index(fts, &filetype) == -1
 
@@ -14,8 +16,6 @@
 	filetype plugin on
 
 	"SCCompile, g++ selected as default compiler
-	
-	let filename = @%
 	
 	map<F9> :!g++ %:p -std=c++11 <cr>
 	"call SingleCompile#ChooseCompiler('cpp', 'g++')
