@@ -1,22 +1,15 @@
-
-
-
-
-
-
-
-
-*			-> highlight words under cursor
-nohl		-> unhighlights searched words
+* -> highlight words under cursor
+nohl -> unhighlights searched words
 
 FontSize 14 -> change font size
 
 
-gg=G        -> auto indentation
+gg=G -> auto indentation
 
 set complete-=i -> improve vim autocomplete
 
-y y, p -> yy copies the line, p pastes it
+y y -> yy copies the line,
+p -> pastes it
 d d    -> deletes the line
 
 multi line edit:
@@ -31,3 +24,32 @@ profit
 ls -> list all buffers
 
 colors ashen -> set color theme to ashen
+
+A -> append character to end of line
+
+E37 -> :w
+
+e [filename] -> opens or creates a file
+
+/[text] -> search
+
+0 in normal mode -> go to beginning of line
+
+ctrl + w -> close buffer
+
+ctrl u -> scroll up
+ctrl d -> scroll down
+
+ctrl + alt + esc -> fix window
+
+q -> stop recording
+
+M -> go to middle of screen
+
+v -> enter visual mode per character
+V -> enter visual mode per line
+
+^ -> first non blank character in line
+$ -> end of the line
+
+Bclose -> close buffer

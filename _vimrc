@@ -1,113 +1,90 @@
-"version 1.0 hi
+set hidden
 
-"let fts = ['c', 'cpp']
-"if index(fts, &filetype) == -1
+"maximize window
+if has("win32") || has("win16")
+	au GUIEnter * simalt ~x
+endif
 
-	"maximize window
-	if has("win32") || has("win16")
-		au GUIEnter * simalt ~x
-	endif
+"pathogen
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
 
-	"pathogen
-	runtime bundle/vim-pathogen/autoload/pathogen.vim
-	execute pathogen#infect()
+"general plugins
+filetype plugin on
+"Undo properly mapped
 
-	"general plugins
-	filetype plugin on
+nmap <c-z> :undo<CR>
+imap <c-z> <Esc>:undo<CR>
 
-	"SCCompile, g++ selected as default compiler
-	
-	map<F9> :!g++ %:p -std=c++11 <cr>
-	"call SingleCompile#ChooseCompiler('cpp', 'g++')
-	"map <F9> :SCCompile -std=c++11 <cr>
-	"map <F10> :!a <cr>
-	"map <F10> :SCCompileRun -std=c++11 <cr>
-	
-	map <c-F9> :SCCompile -std=c++11 /EHsc <cr>
-	map <c-F10> :SCCompileRun -std=c++11 /EHsc <cr>
-	
-	
-	"save propelry mapped
-	nmap <c-s> :w<CR>
-	imap <c-s> <Esc>:w<CR>
+"EDIT settings
+set exrc
+set secure
+set tabstop=4	
+set softtabstop=4
+set shiftwidth=4
+set noexpandtab
+highlight ColorColumn ctermbg=darkgray
 
-	"Undo properly mapped
-	nmap <c-z> :undo<CR>
-	imap <c-z> <Esc>:undo<CR>
+"switch between split windows easily
+imap <silent> <A-Up> :wincmd k<CR>
+imap <silent> <A-Down> :wincmd j<CR>
+imap <silent> <A-Left> :wincmd h<CR>
+imap <silent> <A-Right> :wincmd l<CR>
 
-	"EDIT settings
-	set exrc
-	set secure
-	set tabstop=4
-	set softtabstop=4
-	set shiftwidth=4
-	set noexpandtab
-	highlight ColorColumn ctermbg=darkgray
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
-	"switch between split windows easily
-	imap <silent> <A-Up> :wincmd k<CR>
-	imap <silent> <A-Down> :wincmd j<CR>
-	imap <silent> <A-Left> :wincmd h<CR>
-	imap <silent> <A-Right> :wincmd l<CR>
+"something
+set nocompatible
+source $VIMRUNTIME/vimrc_example.vim
+source $VIMRUNTIME/mswin.vim
+behave mswin
 
-	nmap <silent> <A-Up> :wincmd k<CR>
-	nmap <silent> <A-Down> :wincmd j<CR>
-	nmap <silent> <A-Left> :wincmd h<CR>
-	nmap <silent> <A-Right> :wincmd l<CR>
+"key maps, switch between buffers
+imap <F2> :bprev<CR>
+imap <F3> :bnext<CR>
+nmap <F2> :bprev<CR>
+nmap <F3> :bnext<CR>
 
-	"something
-	set nocompatible
-	source $VIMRUNTIME/vimrc_example.vim
-	source $VIMRUNTIME/mswin.vim
-	behave mswin
+nmap <c-w> :bd<CR>
+nmap <c-w> :bd<CR>
 
-	"key maps, switch between buffers
-	imap <F2> :bprev<CR>
-	imap <F3> :bnext<CR>
-	nmap <F2> :bprev<CR>
-	nmap <F3> :bnext<CR>
+"color schemes
+syntax enable
 
-	"color schemes
-	syntax enable
-	colorscheme skittles_dark
+"fonts
+set guifont=droid_sans_mono:h10
 
-	"fonts
-	set guifont=droid_sans_mono:h10
+"hide gvim toolbar
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
 
-	"hide gvim toolbar
-	set guioptions-=m  "remove menu bar
-	set guioptions-=T  "remove toolbar
+"highlight searched string
+set hlsearch
 
-	"highlight searched string
-	set hlsearch
+"unhighlight searched string
+nnoremap <silent> <C-l> :nohl<CR><C-l>
 
-	"unhighlight searched string
-	nnoremap <silent> <C-l> :nohl<CR><C-l>
+"vim airline -> an integrateable status bar
+set laststatus=2
 
-	"vim airline -> an integrateable status bar
-	set laststatus=2
+"line numbers
+set number
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-	"clang++
-	"let g:clang_c_options = '-std=gnu11'
-	"let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-
-	"syntastic -> syntax checker
+filetype detect
+if &ft == 'cpp'
+	"colorscheme skittles_dark
+	colorscheme molokai
+	map<F10> :!a <cr>
+	noremap <F9> :w <cr> :!g++ -std=c++11 % -o %<.app -Wall -Wextra -Werror -pedantic && ./%<.app <cr>
 	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
 	set statusline+=%*
-
-	"optimizations
-	let g:syntastic_enable_signs=0
-
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-
-	let g:syntastic_cpp_compiler = 'g++'
-	let g:syntastic_cpp_compiler_options = ' -std=c++11 '
-
-"endif
+elseif &ft == 'python'
+	colorscheme molokai
+endif
 
 
 
