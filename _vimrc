@@ -42,7 +42,9 @@ source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
-"key maps, switch between buffers
+"buffer manipulation
+
+nmap <C-w> :Bclose<CR>
 imap <F2> :bprev<CR>
 imap <F3> :bnext<CR>
 nmap <F2> :bprev<CR>
@@ -75,25 +77,20 @@ set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 filetype detect
-if &ft == 'cpp'
+if &ft == 'cpp' || &ft == 'c'
 	"colorscheme skittles_dark
 	colorscheme molokai
-	map<F10> :!a <cr>
-	noremap <F9> :w <cr> :!g++ -std=c++11 % -o %<.app -Wall -Wextra -Werror -pedantic && ./%<.app <cr>
+	"compile
+	noremap <F10> <cr> :!mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" <cr>
+	"""noremap <F10> <cr> :!mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" <cr>
+	noremap <F9> <cr> :!mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" & "%:p:r.exe" <cr>
 	set statusline+=%#warningmsg#
 	set statusline+=%*
 elseif &ft == 'python'
 	colorscheme molokai
+else
+	colorscheme wir_black
 endif
-
-
-
-
-
-
-
-
-
 
 "something
 set diffexpr=MyDiff()
