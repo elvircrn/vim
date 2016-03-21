@@ -80,12 +80,18 @@ filetype detect
 if &ft == 'cpp' || &ft == 'c'
 	"colorscheme skittles_dark
 	colorscheme molokai
+	
 	"compile
-	noremap <F10> <cr> :!mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" <cr>
+	map <F10> <cr> :!mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" <cr>
+	
+	"compile and run
+	map <F9> <cr> :Start mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" & "%:p:r.exe" <cr>
+
 	"""noremap <F10> <cr> :!mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" <cr>
-	noremap <F9> <cr> :!mingw32-gcc.exe -pedantic-errors -pedantic -Wall -O1 -Wall -Wuninitialized -Winit-self -Wno-unused-result -Wfloat-equal -Wno-sign-compare -Werror=implicit-function-declaration -Werror=vla -pedantic -lm -pass-exit-codes  -c "%:p" -o "%:p:r.o" & mingw32-g++.exe  -o "%:p:r.exe" "%:p:r.o" & "%:p:r.exe" <cr>
+	
 	set statusline+=%#warningmsg#
 	set statusline+=%*
+
 elseif &ft == 'python'
 	colorscheme molokai
 else
